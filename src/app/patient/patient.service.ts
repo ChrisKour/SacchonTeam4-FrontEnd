@@ -15,4 +15,8 @@ export class PatientService {
   getPatients() : Observable<Patient[]> {
     return this.http.get<Patient[]>(`${this.baseUrl}/patient`);
   }
+
+  addPatient(patient: Patient) {
+    return this.http.post<Patient>(`${this.baseUrl}/patient`, patient);
+  }
 }

@@ -1,7 +1,5 @@
 <div class="container-fluid">
-    <h3> Patient List </h3>
-
-    <button class="btn btn-primary" (click)="getPatients()">GET PRODUCTS</button>
+    <button class="btn btn-primary" (click)="getPatients()">Get all available patients</button>
 
     <div class="row">
         <div *ngFor="let patient of patients">
@@ -9,9 +7,9 @@
             <div class="col-sm-4"></div>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                  <h5 class="card-title">{{ patient.name }}</h5>
-                  <!-- <p class="card-text">Price: {{ product.price }}</p>
-                  <p class="card-text">Quantity: {{ product.inventoryQuantity }}</p> -->
+                  <h5 class="card-title">Patient Name: {{ patient.name }}</h5>
+                  <p class="card-text">Patient Username: {{ patient.username }}</p>
+                  <p class="card-text">Patient Password: {{ patient.password }}</p>
                 </div>
               </div>
         </div>
