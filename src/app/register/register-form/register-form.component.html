@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <form class="alert alert-secondary" [formGroup]="registerForm" (ngSubmit)="addUser()" novalidate>
+        <div class="form-group">
+            <label for="nameInput">Name</label>
+            <input type="text" class="form-control" id="nameInput" formControlName="name"
+                placeholder="Enter your name here">
+        </div>
+        <div *ngIf="registerForm.get('name').hasError('required') && registerForm.get('name').touched"
+            class="text-danger">Your name is required in order to register.</div>
+
+        <div class="form-group">
+            <label for="usernameInput">Username</label>
+            <input type="text" class="form-control" id="usernameInput" formControlName="username"
+                placeholder="Enter your desired username here">
+        </div>
+        <div *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched"
+            class="text-danger">A username is required in order to register.</div>
+
+        <div class="form-group">
+            <label for="passwordInput">Password</label>
+            <input type="password" class="form-control" id="passwordInput" formControlName="password"
+                placeholder="Enter your desired password here">
+        </div>
+        <div *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched"
+            class="text-danger">A password is required in order to register.</div>
+
+
+
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="patient" formControlName="role" checked>Patient
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="doctor" formControlName="role">Doctor
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="chief" formControlName="role">Chief Doctor
+            </label>
+        </div>
+
+        <button class="btn btn-primary" [disabled]='registerForm.invalid'>Submit</button>
+    </form>
+</div>

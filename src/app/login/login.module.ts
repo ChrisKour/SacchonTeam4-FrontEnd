@@ -1,15 +1,17 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PatientListComponent } from './patient-list/patient-list.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { LoginFormComponent } from './login-form/login-form.component';
+
+
 
 @NgModule({
   declarations: [
-    PatientListComponent
+    LoginFormComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule
   ]
 })
-export class PatientModule { }
+export class LoginModule { }
