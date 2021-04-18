@@ -1,8 +1,7 @@
 import { LoginService } from './../login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'sacchon-login-form',
@@ -33,7 +32,6 @@ export class LoginFormComponent implements OnInit {
       }
       else {
         alert("Wrong username or password");
-        // this.service.responseOfAuth.next(false);
         this.loginForm.reset();
       }
     });

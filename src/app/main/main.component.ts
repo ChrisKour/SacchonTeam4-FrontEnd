@@ -18,7 +18,7 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (sessionStorage.getItem("credentials") == null){
       this.isLogged = false;
-      this.router.navigate(['login']);
+      this.router.navigate(['register']);
     } else {
       this.isLogged = true;
       this.router.navigate(['patient']);
