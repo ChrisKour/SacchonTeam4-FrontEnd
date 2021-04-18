@@ -28,10 +28,12 @@ export class LoginFormComponent implements OnInit {
 
     this.service.authentication(this.loginForm.value).subscribe(data => {
       if (data.code == 200) {
+        this.service.responseOfAuth.next(true);
         // this.router.navigate([`${data.description}`]);
         this.router.navigate(['patient']);
       }
       else {
+        this.service.responseOfAuth.next(false);
         alert("Wrong username or password");
         this.loginForm.reset();
       }

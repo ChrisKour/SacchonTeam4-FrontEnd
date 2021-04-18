@@ -19,7 +19,6 @@ export class LoginService {
     console.log(loginInformation);
     this.params.append('username', loginInformation.username);
     this.params.append('password', loginInformation.password);
-    this.responseOfAuth.next(true);
 
     return this.http.get<AppResponse>(
       `${this.baseUrl}/validate`,
