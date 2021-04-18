@@ -28,7 +28,8 @@ export class LoginFormComponent implements OnInit {
 
     this.service.authentication(this.loginForm.value).subscribe(data => {
       if (data.code == 200) {
-        this.router.navigate([`${data.description}`]);
+        // this.router.navigate([`${data.description}`]);
+        this.router.navigate(['patient']);
       }
       else {
         alert("Wrong username or password");
