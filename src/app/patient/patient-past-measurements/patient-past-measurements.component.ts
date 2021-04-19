@@ -1,5 +1,5 @@
 import { PatientService } from './../patient.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NumberValueAccessor } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class PatientPastMeasurementsComponent implements OnInit {
 
   form: FormGroup;
-  hasClickedGlucose = true;
-  hasClickedCarb = true;
+  averageGlucose;
+  averageCarb;
 
   constructor(private fb : FormBuilder, private service: PatientService) { }
 
@@ -23,11 +23,19 @@ export class PatientPastMeasurementsComponent implements OnInit {
   }
 
   getAverageGlucose() {
-
+    this.averageCarb = null;
+    this.service.getAverageMeasurement(this.form.get('from').value, this.form.get('to').value, "glucose").subscribe (data => {
+      console.log(data);
+      this.averageGlucose = data.data;
+    });
   }
 
   getAverageCarbIntake() {
-    
+    this.averageGlucose = null;
+    this.service.getAverageMeasurement(this.form.get('from').value, this.form.get('to').value, "carb").subscribe (data => {
+      console.log(data);
+      this.averageCarb = data.data;
+    });
   }
 
 }

@@ -1,7 +1,7 @@
 import { Measurement } from './measurement';
 import { PatientResponse } from './patient-response';
 import { AppResponse } from './../main/appResponse';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Patient } from './patient';
@@ -56,7 +56,12 @@ export class PatientService {
       );
   }
 
-  getPatientPastMeasurements() {
-    
+  getAverageMeasurement(fromDate: string, toDate: string, type: string) {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("username")}/measurement`,
+      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))}),
+      params : new HttpParams().set('fromDate', fromDate).set("toDate", toDate).set("type", type)
+      },
+      );
   }
 }
