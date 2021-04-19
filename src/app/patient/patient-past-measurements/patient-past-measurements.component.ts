@@ -1,6 +1,7 @@
 import { PatientService } from './../patient.service';
 import { FormGroup, FormBuilder, Validators, NumberValueAccessor } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { DateValidator } from '../date-validator';
 
 @Component({
   selector: 'sacchon-patient-past-measurements',
@@ -17,8 +18,8 @@ export class PatientPastMeasurementsComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      from: ['', Validators.required],
-      to: ['', Validators.required]
+      from: ['', [Validators.required, DateValidator.ptDate]],
+      to: ['', [Validators.required, DateValidator.ptDate]]
     });
   }
 

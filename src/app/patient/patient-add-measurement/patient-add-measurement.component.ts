@@ -1,8 +1,9 @@
-import { Measurement } from './../measurement';
+import { TimeValidator } from './../time-validator';
 import { PatientService } from './../patient.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DateValidator } from '../date-validator';
 
 @Component({
   selector: 'sacchon-patient-add-measurement',
@@ -17,8 +18,8 @@ export class PatientAddMeasurementComponent implements OnInit {
 
   ngOnInit(): void {
     this.measurementForm = this.fb.group({
-      date: ['', Validators.required],
-      time: ['', Validators.required],
+      date: ['', [Validators.required, DateValidator.ptDate]],
+      time: ['', [Validators.required, TimeValidator.ptTime]],
       glucoseLevel: ['', Validators.required],
       carbIntake: ['', Validators.required]
     });
