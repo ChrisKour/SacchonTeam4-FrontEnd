@@ -25,6 +25,7 @@ export class LoginFormComponent implements OnInit {
     let username = this.loginForm.get('username').value;
     let password = this.loginForm.get('password').value;
     sessionStorage.setItem("credentials", username + ":" + password);
+    sessionStorage.setItem("username", username);
 
     this.service.authentication(this.loginForm.value).subscribe(data => {
       if (data.code == 200) {

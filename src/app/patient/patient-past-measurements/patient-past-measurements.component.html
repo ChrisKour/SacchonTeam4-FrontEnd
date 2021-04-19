@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <h3>Select period for which to show average measurements:</h3>
+    <form class="alert alert-secondary" [formGroup]="form" novalidate>
+        <div class="form-group mr 2">
+            <label for="from">Date from:</label>
+            <input class="form-control" type="text" id="from" formControlName="from">
+        </div>
+        <div class="form-group mr 2">
+            <label for="to">Date to:</label>
+            <input class="form-control" type="text" id="to" formControlName="to">
+        </div>
+        
+        <button class="btn btn-primary" [disabled]='form.invalid' (click)="getAverageGlucose()">Show average glucose level</button>
+        <button class="btn btn-primary ml-3" [disabled]='form.invalid' (click)="getAverageCarbIntake()">Show average carb intake</button>
+    </form>
+
+    <div>
+        <p *ngIf="hasClickedGlucose" >Average Glucose: {{ averageGlucose }}</p>
+        <p *ngIf="hasClickedCarb" >Average Carb Intake: {{ averageCarb }}</p>
+    </div>
+</div>

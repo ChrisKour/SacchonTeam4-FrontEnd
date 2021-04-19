@@ -1,3 +1,6 @@
+import { Measurement } from './measurement';
+import { PatientResponse } from './patient-response';
+import { AppResponse } from './../main/appResponse';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -21,5 +24,39 @@ export class PatientService {
 
   addPatient(patient: Patient) {
     return this.http.post<Patient>(`${this.baseUrl}/patient`, patient);
+  }
+
+  getPatientInfo() : Observable<PatientResponse> {
+    return this.http.get<PatientResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("username")}`,
+      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))})}
+      );
+  }
+
+  deletePatientAccount() {
+    return this.http.delete<AppResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("username")}`,
+      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))})}
+      );
+  }
+
+  editPatientAccount(patient: Patient) {
+    return this.http.put<PatientResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("username")}`,
+      patient,
+      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))})},
+      );
+  }
+
+  addPatientMeasurement(measurement: Measurement) {
+    return this.http.post<AppResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("username")}/measurement`,
+      measurement,
+      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))})},
+      );
+  }
+
+  getPatientPastMeasurements() {
+    
   }
 }

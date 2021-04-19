@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <p>Account:</p>
+    <form class="alert alert-secondary" [formGroup]="editForm" (ngSubmit)="editPatientAccount()" novalidate>
+        <div class="form-group mr 2">
+            <label for="name">Name:</label>
+            <input class="form-control" type="text" id="name" formControlName="name" placeholder="Edit your name">
+        </div>
+        <div class="form-group mr 2">
+            <label for="username">Username:</label>
+            <input class="form-control" type="text" id="username" formControlName="username" placeholder="Edit your username">
+        </div>
+        <div *ngIf="editForm.get('username').hasError('required') && editForm.get('username').touched" class="text-danger">All fields must be set again</div>
+        <div class="form-group mr 2">
+            <label for="password">Password:</label>
+            <input class="form-control" type="text" id="password" formControlName="password" placeholder="Edit your password">
+        </div>
+        <div *ngIf="editForm.get('password').hasError('required') && editForm.get('password').touched" class="text-danger">All fields must be set again</div>
+
+        
+        <button class="btn btn-primary" [disabled]='editForm.invalid'>Edit account</button>
+    </form>
+
+    <button class="btn btn-primary" (click)="deletePatientAccount()">Delete your account</button>
+</div>
