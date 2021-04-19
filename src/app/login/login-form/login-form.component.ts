@@ -40,4 +40,8 @@ export class LoginFormComponent implements OnInit {
       }
     });
   }
+
+  redirectToRegister() {
+    this.router.navigate(['register']);
+  }
 }

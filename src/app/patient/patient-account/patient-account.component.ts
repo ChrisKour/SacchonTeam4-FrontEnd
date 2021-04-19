@@ -1,3 +1,4 @@
+import { LoginService } from './../../login/login.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PatientService } from './../patient.service';
@@ -14,7 +15,7 @@ export class PatientAccountComponent implements OnInit {
   name: string;
   editForm: FormGroup;
 
-  constructor(private service: PatientService, private fb: FormBuilder, private router: Router) { }
+  constructor(private service: PatientService, private fb: FormBuilder, private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.editForm = this.fb.group({
@@ -29,10 +30,12 @@ export class PatientAccountComponent implements OnInit {
     patient = this.editForm.value;
     patient.role = 'patient';
 
-    this.service.editPatientAccount(patient).subscribe(response => {
-      alert(response.description);
+    this.service.editPatientAccount(this.editForm.value).subscribe(response => {
+      alert(response.description + " Please login again for the changes to take effect.");
       if (response.code == 200) {
-        this.router.navigate(['patient']);
+        sessionStorage.clear();
+        this.loginService.responseOfAuth.next(false);
+        this.router.navigate(['login']);
       }
     });
   }
@@ -42,6 +45,7 @@ export class PatientAccountComponent implements OnInit {
       alert(data.description);
       if (data.code == 200) {
         sessionStorage.clear();
+        this.loginService.responseOfAuth.next(false);
         this.router.navigate(['register']);
       }
     })

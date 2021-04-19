@@ -11,21 +11,51 @@ import { Patient } from '../patient';
 export class PatientPageComponent implements OnInit {
 
   patient: Patient;
+  clickedManage = false;
+  clickedAverages = false;
+  clickedNewMeasurement = false;
+  clickedPastMeasurements = false;
 
-  constructor(private service: PatientService, private router: Router) { }
+  constructor(private service: PatientService) { }
 
   ngOnInit(): void {
+    this.updatePatientLastLogin();
+  }
+
+  updatePatientLastLogin() {
+    let date = {
+      "date" : new Date().toLocaleDateString(),
+      "time" : new Date().toLocaleTimeString()
+    }
+    console.log(date);
+    this.service.updatePatientLastLogin(date).subscribe();
   }
 
   manageAccount() {
-    this.router.navigate(['patientaccount']);
+    this.clickedAverages = false;
+    this.clickedNewMeasurement = false;
+    this.clickedPastMeasurements = false;
+    this.clickedManage = true;
   }
 
   storeNewMeasurement() {
-    this.router.navigate(['patientaddmeasurement']);
+    this.clickedAverages = false;
+    this.clickedManage = false;
+    this.clickedPastMeasurements = false;
+    this.clickedNewMeasurement = true;
   }
 
-  viewPastMeasurements() {
-    this.router.navigate(['patientpastmeasurements']);
+  viewPastAverages() {
+    this.clickedManage = false;
+    this.clickedPastMeasurements = false;
+    this.clickedNewMeasurement = false;
+    this.clickedAverages = true;
+  }
+
+  editPastMeasurements() {
+    this.clickedManage = false;
+    this.clickedNewMeasurement = false;
+    this.clickedAverages = false;
+    this.clickedPastMeasurements = true;
   }
 }

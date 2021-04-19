@@ -1,5 +1,5 @@
 import { PatientService } from './../patient.service';
-import { FormGroup, FormBuilder, Validators, NumberValueAccessor } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { DateValidator } from '../date-validator';
 

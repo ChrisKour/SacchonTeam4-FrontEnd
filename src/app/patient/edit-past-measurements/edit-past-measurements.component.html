@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row" *ngIf="measurements">
+        <div *ngFor="let measurement of measurements">
+            <div class="clearfix" *ngIf="index % 3 == 0"></div>
+            <div class="col-sm-4"></div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Measurement Date: {{ measurement.date }} {{ measurement.time }}</h5>
+                    <p class="card-text">Glucose Level: {{ measurement.glucoseLevel }}</p>
+                    <p class="card-text">Carb Intake: {{ measurement.carbIntake }}</p>
+                </div>
+                <button class="btn btn-primary" (click)="openEditForm(measurement.uri)">Edit</button>
+                <button class="btn btn-secondary" (click)="deleteMeasurement(measurement.uri)">Remove</button>
+            </div>
+
+            <div *ngIf="isSortedClicked">
+                <form class="alert alert-secondary" [formGroup]="editMeasurementForm" (ngSubmit)="editMeasurement(measurement.uri)" novalidate>
+                    <div class="form-group mr 2">
+                        <label for="date">Date:</label>
+                        <input class="form-control" type="text" id="date" formControlName="date" placeholder="Enter the date of measurement">
+                    </div>
+                    <div class="form-group mr 2">
+                        <label for="time">Time:</label>
+                        <input class="form-control" type="text" id="time" formControlName="time" placeholder="Enter the time of measurement">
+                    </div>
+            
+                    <div class="form-group mr 2">
+                        <label for="glucoseLevel">Glucose level:</label>
+                        <input class="form-control" type="text" id="glucoseLevel" formControlName="glucoseLevel" placeholder="Enter your glucose level">
+                    </div>
+            
+                    <div class="form-group mr 2">
+                        <label for="carbIntake">Carb intake:</label>
+                        <input class="form-control" type="text" id="carbIntake" formControlName="carbIntake" placeholder="Enter your carb intake">
+                    </div>
+                    
+                    <button class="btn btn-primary" [disabled]='editMeasurementForm.invalid'>Edit measurement</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

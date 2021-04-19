@@ -2,6 +2,7 @@ export interface Measurement {
 
     date: string;
     time: string;
-    glucose: number;
-    carb: number;
+    glucoseLevel: number;
+    carbIntake: number;
+    uri: string;
 }

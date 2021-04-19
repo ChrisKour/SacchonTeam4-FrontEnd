@@ -15,53 +15,88 @@ export class PatientService {
 
   constructor(private http: HttpClient) { }
 
-  getPatients() : Observable<Patient[]> {
+  getPatients(): Observable<Patient[]> {
     return this.http.get<Patient[]>(
       `${this.baseUrl}/patient`,
-      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))})}
-      );
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) }
+    );
   }
 
   addPatient(patient: Patient) {
     return this.http.post<Patient>(`${this.baseUrl}/patient`, patient);
   }
 
-  getPatientInfo() : Observable<PatientResponse> {
+  getPatientInfo(): Observable<PatientResponse> {
     return this.http.get<PatientResponse>(
       `${this.baseUrl}/patient/${sessionStorage.getItem("username")}`,
-      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))})}
-      );
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) }
+    );
   }
 
   deletePatientAccount() {
     return this.http.delete<AppResponse>(
       `${this.baseUrl}/patient/${sessionStorage.getItem("username")}`,
-      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))})}
-      );
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) }
+    );
   }
 
   editPatientAccount(patient: Patient) {
     return this.http.put<PatientResponse>(
       `${this.baseUrl}/patient/${sessionStorage.getItem("username")}`,
       patient,
-      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))})},
-      );
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) },
+    );
   }
 
   addPatientMeasurement(measurement: Measurement) {
     return this.http.post<AppResponse>(
       `${this.baseUrl}/patient/${sessionStorage.getItem("username")}/measurement`,
       measurement,
-      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))})},
-      );
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) },
+    );
   }
 
   getAverageMeasurement(fromDate: string, toDate: string, type: string) {
     return this.http.get<AppResponse>(
       `${this.baseUrl}/patient/${sessionStorage.getItem("username")}/measurement`,
-      {headers: new HttpHeaders({'Authorization':'Basic ' + btoa(sessionStorage.getItem("credentials"))}),
-      params : new HttpParams().set('fromDate', fromDate).set("toDate", toDate).set("type", type)
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }),
+        params: new HttpParams().set('fromDate', fromDate).set("toDate", toDate).set("type", type)
       },
-      );
+    );
+  }
+
+  getAllPastMeasurements() {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("username")}/measurement`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
+
+  deleteMeasurement(id: string) {
+    return this.http.delete<AppResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("username")}/measurement/${id}`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
+
+  editPatientMeasurement(id: string, measurement: Measurement) {
+    return this.http.put<AppResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("username")}/measurement/${id}`,
+      measurement,
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) },
+    );
+  }
+
+  updatePatientLastLogin(date: Object) {
+    return this.http.patch<AppResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("username")}`,
+      date,
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) },
+    );
   }
 }

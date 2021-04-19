@@ -1,3 +1,4 @@
+import { EditPastMeasurementsComponent } from './patient/edit-past-measurements/edit-past-measurements.component';
 import { PatientAddMeasurementComponent } from './patient/patient-add-measurement/patient-add-measurement.component';
 import { PatientPastMeasurementsComponent } from './patient/patient-past-measurements/patient-past-measurements.component';
 import { PatientAccountComponent } from './patient/patient-account/patient-account.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterFormComponent},
   {path: 'patientaccount', component: PatientAccountComponent},
   {path: 'patientpastmeasurements', component: PatientPastMeasurementsComponent},
-  {path: 'patientaddmeasurement', component: PatientAddMeasurementComponent}
+  {path: 'patientaddmeasurement', component: PatientAddMeasurementComponent},
+  {path: 'patient_edit_measurements', component: EditPastMeasurementsComponent}
 ];
 
 @NgModule({

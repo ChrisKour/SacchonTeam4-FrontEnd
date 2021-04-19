@@ -1,7 +1,23 @@
 <div class="container-fluid">
     <h3>What would you like to do today?</h3>
     <button class="btn btn-primary" (click)="manageAccount()">Manage my account</button>
-    <button class="btn btn-primary ml-3" (click)="viewPastMeasurements()">View past measurement averages</button>
+    <button class="btn btn-primary ml-3" (click)="viewPastAverages()">View past measurement averages</button>
     <button class="btn btn-primary ml-3" (click)="storeNewMeasurement()">Add new measurement</button>
-    <!-- <button (click)="modifyPastMeasurement()">view average carb intake over period</button> -->
+    <button class="btn btn-primary ml-3" (click)="editPastMeasurements()">View and edit past data</button>
+</div>
+
+<div *ngIf="clickedManage">
+    <sacchon-patient-account></sacchon-patient-account>
+</div>
+
+<div *ngIf="clickedAverages">
+    <sacchon-patient-past-measurements></sacchon-patient-past-measurements>
+</div>
+
+<div *ngIf="clickedNewMeasurement">
+    <sacchon-patient-add-measurement></sacchon-patient-add-measurement>
+</div>
+
+<div *ngIf="clickedPastMeasurements">
+    <sacchon-edit-past-measurements></sacchon-edit-past-measurements>
 </div>
