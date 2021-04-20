@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <h3>What would you like to view today?</h3>
+    <button class="btn btn-primary" (click)="viewPatientData()">Patient data over time</button>
+    <button class="btn btn-primary ml-3" (click)="viewDoctorConsultations()">Doctor submissions over time</button>
+    <button class="btn btn-primary ml-3" (click)="viewWaitingPatients()">Patients awaiting consultations</button>
+    <button class="btn btn-primary ml-3" (click)="viewInactivePatients()">Patients with no activity over time</button>
+    <button class="btn btn-primary ml-3" (click)="viewInactiveDoctors()">Doctors with no activity over time</button>
+</div>
+
+<div *ngIf="clickedPatientData">
+    <sacchon-view-patient-data></sacchon-view-patient-data>
+</div>
+
+<div *ngIf="clickedDoctorsConsulations">
+    <sacchon-view-doctor-consultation></sacchon-view-doctor-consultation>
+</div>
+
+<div *ngIf="clickedWaitingPatients">
+    <sacchon-view-patients-waiting></sacchon-view-patients-waiting>
+</div>
+
+<div *ngIf="clickedInactivePatients">
+    <sacchon-inactive-patients></sacchon-inactive-patients>
+</div>
+
+<div *ngIf="clickedInactiveDoctors">
+    <sacchon-inactive-doctors></sacchon-inactive-doctors>
+</div>

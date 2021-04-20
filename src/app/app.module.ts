@@ -1,3 +1,4 @@
+import { ChiefDoctorModule } from './chief-doctor/chief-doctor.module';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
 
@@ -21,7 +22,8 @@ import { MainComponent } from './main/main.component';
     PatientModule,
     HttpClientModule,
     LoginModule,
-    RegisterModule
+    RegisterModule,
+    ChiefDoctorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
