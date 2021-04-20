@@ -1,1 +1,27 @@
-<p>view-patient-data works!</p>
+<div class="container-fluid">
+    <div class="list-group">
+        <div *ngFor="let patient of patients">
+            <button type="button" class="list-group-item list-group-item-action">{{ patient.name }}</button>
+            <div>
+                <form class="alert alert-secondary" [formGroup]="patientForm" (ngSubmit)="getPatientData()" novalidate>
+                    <div class="form-group mr 2">
+                        <label for="username">From Date:</label>
+                        <input class="form-control" type="text" id="username" formControlName="username"
+                            placeholder="Enter your username">
+                    </div>
+                    <div *ngIf="patientForm.get('username').hasError('required') && patientForm.get('username').touched"
+                        class="text-danger">Enter your username to login.</div>
+                    <div class="form-group mr 2">
+                        <label for="password">To Date:</label>
+                        <input class="form-control" type="password" id="password" formControlName="password"
+                            placeholder="Enter your password">
+                    </div>
+                    <div *ngIf="patientForm.get('password').hasError('required') && patientForm.get('password').touched"
+                        class="text-danger">Enter your password to login.</div>
+                    <button class="btn btn-primary" [disabled]='patientForm.invalid'>Get patient data</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

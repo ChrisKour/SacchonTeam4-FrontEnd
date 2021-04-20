@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChiefDoctorLandingPageComponent } from './chief-doctor-landing-page/chief-doctor-landing-page.component';
@@ -19,7 +20,8 @@ import { InactiveDoctorsComponent } from './inactive-doctors/inactive-doctors.co
     InactiveDoctorsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class ChiefDoctorModule { }

@@ -1,3 +1,6 @@
+import { Patient } from './../../patient/patient';
+import { ChiefDoctorService } from './../chief-doctor.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewPatientDataComponent implements OnInit {
 
-  constructor() { }
+  patientForm: FormGroup;
+  patients: Patient[];
+
+  constructor(private fb: FormBuilder, private service: ChiefDoctorService) { }
 
   ngOnInit(): void {
+    this.patientForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+    this.getPatientData();
   }
 
+  getPatientData() {
+    this.service.getAllPatients().subscribe(data => {
+      this.patients = <Patient[]>data.data;
+    });
+  }
 }

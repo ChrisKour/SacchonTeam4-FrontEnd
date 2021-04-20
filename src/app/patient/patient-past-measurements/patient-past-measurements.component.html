@@ -16,9 +16,9 @@
         </div>
         <div *ngIf="form.get('to').hasError('required') && form.get('to').touched" class="text-danger">All
             the fields must be set</div>
-            <div *ngIf="form.controls.from.hasError('ptDate') && form.get('to').touched" class="text-danger">
-                The date must be filled as dd/MM/yyyy
-            </div>
+        <div *ngIf="form.controls.to.hasError('ptDate') && form.get('to').touched" class="text-danger">
+            The time must be filled as HH:mm
+        </div>
 
         <button class="btn btn-primary" [disabled]='form.invalid' (click)="getAverageGlucose()">Show average glucose
             level</button>

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,9 +14,13 @@ export class ChiefDoctorLandingPageComponent implements OnInit {
   clickedInactivePatients = false;
   clickedInactiveDoctors = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem("role") != "doctor"){
+      this.router.navigate([sessionStorage.getItem("role")])
+      return;
+    }
   }
 
   viewPatientData() {

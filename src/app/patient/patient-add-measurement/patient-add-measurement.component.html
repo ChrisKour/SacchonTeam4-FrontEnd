@@ -2,23 +2,45 @@
     <form class="alert alert-secondary" [formGroup]="measurementForm" (ngSubmit)="submitMeasurement()" novalidate>
         <div class="form-group mr 2">
             <label for="date">Date:</label>
-            <input class="form-control" type="text" id="date" formControlName="date" placeholder="Enter the date of measurement">
+            <input class="form-control" type="text" id="date" formControlName="date"
+                placeholder="Enter the date of measurement">
         </div>
+        <div *ngIf="measurementForm.get('date').hasError('required') && measurementForm.get('date').touched"
+            class="text-danger">Enter the date of the measurement</div>
+        <div *ngIf="measurementForm.controls.date.hasError('ptDate') && measurementForm.get('date').touched"
+            class="text-danger">The date must be filled as dd/MM/yyyy</div>
         <div class="form-group mr 2">
             <label for="time">Time:</label>
-            <input class="form-control" type="text" id="time" formControlName="time" placeholder="Enter the time of measurement">
+            <input class="form-control" type="text" id="time" formControlName="time"
+                placeholder="Enter the time of measurement">
+        </div>
+        <div *ngIf="measurementForm.get('time').hasError('required') && measurementForm.get('time').touched"
+            class="text-danger">Enter the time of the measurement</div>
+        <div *ngIf="measurementForm.controls.time.hasError('ptDate') && measurementForm.get('time').touched"
+            class="text-danger">
+            The time must be filled as HH:mm
         </div>
 
         <div class="form-group mr 2">
             <label for="glucoseLevel">Glucose level:</label>
-            <input class="form-control" type="text" id="glucoseLevel" formControlName="glucoseLevel" placeholder="Enter your glucose level">
+            <input class="form-control" type="text" id="glucoseLevel" formControlName="glucoseLevel"
+                placeholder="Enter your glucose level">
         </div>
+        <div *ngIf="measurementForm.get('glucoseLevel').hasError('required') && measurementForm.get('glucoseLevel').touched"
+            class="text-danger">Enter the glucose level</div>
+        <div *ngIf="measurementForm.get('glucoseLevel').hasError('pattern') && measurementForm.get('glucoseLevel').touched"
+            class="text-danger">Only integers are allowed</div>
 
         <div class="form-group mr 2">
             <label for="carbIntake">Carb intake:</label>
-            <input class="form-control" type="text" id="carbIntake" formControlName="carbIntake" placeholder="Enter your carb intake">
+            <input class="form-control" type="text" id="carbIntake" formControlName="carbIntake"
+                placeholder="Enter your carb intake">
         </div>
-        
+        <div *ngIf="measurementForm.get('carbIntake').hasError('required') && measurementForm.get('carbIntake').touched"
+            class="text-danger">Enter the carb intake</div>
+        <div *ngIf="measurementForm.get('carbIntake').hasError('pattern') && measurementForm.get('carbIntake').touched"
+            class="text-danger">Only integers are allowed</div>
+
         <button class="btn btn-primary" [disabled]='measurementForm.invalid'>Add measurement</button>
     </form>
 </div>

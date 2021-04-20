@@ -20,8 +20,8 @@ export class PatientAddMeasurementComponent implements OnInit {
     this.measurementForm = this.fb.group({
       date: ['', [Validators.required, DateValidator.ptDate]],
       time: ['', [Validators.required, TimeValidator.ptTime]],
-      glucoseLevel: ['', Validators.required],
-      carbIntake: ['', Validators.required]
+      glucoseLevel: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      carbIntake: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
     });
   }
 
