@@ -1,5 +1,6 @@
 export interface Measurement {
 
+    id: number;
     date: string;
     time: string;
     glucoseLevel: number;

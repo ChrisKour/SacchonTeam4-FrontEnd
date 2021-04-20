@@ -2,6 +2,7 @@ import { LoginService } from './../login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserRepresantation } from '../user-represantation';
 
 @Component({
   selector: 'sacchon-login-form',
@@ -24,15 +25,13 @@ export class LoginFormComponent implements OnInit {
   login() {
     let username = this.loginForm.get('username').value;
     let password = this.loginForm.get('password').value;
-    sessionStorage.setItem("credentials", username + ":" + password);
-    sessionStorage.setItem("username", username);
 
-    this.service.authentication(this.loginForm.value).subscribe(data => {
+    this.service.authentication(username, password).subscribe(data => {
       if (data.code == 200) {
+        let user = <UserRepresantation>data.data;
+        this.updateSessionStorageInformation(user);
         this.service.responseOfAuth.next(true);
-        sessionStorage.setItem("role", data.description);
-        // this.router.navigate([`${data.description}`]);
-        this.router.navigate(['patient']);
+        this.router.navigate([user.role]);
       }
       else {
         this.service.responseOfAuth.next(false);
@@ -40,6 +39,13 @@ export class LoginFormComponent implements OnInit {
         this.loginForm.reset();
       }
     });
+  }
+
+  updateSessionStorageInformation(user: UserRepresantation) {
+    sessionStorage.setItem("credentials", user.username + ":" + user.password);
+    sessionStorage.setItem("username", user.username);
+    sessionStorage.setItem("id", user.id + '');
+    sessionStorage.setItem("role", user.role);
   }
 
   redirectToRegister() {

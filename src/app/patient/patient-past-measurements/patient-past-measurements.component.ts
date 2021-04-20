@@ -11,7 +11,8 @@ import { DateValidator } from '../date-validator';
 export class PatientPastMeasurementsComponent implements OnInit {
 
   form: FormGroup;
-  averageGlucose;
+  averageGlucose : number;
+  noData: boolean = false;
   averageCarb;
 
   constructor(private fb : FormBuilder, private service: PatientService) { }
@@ -26,16 +27,28 @@ export class PatientPastMeasurementsComponent implements OnInit {
   getAverageGlucose() {
     this.averageCarb = null;
     this.service.getAverageMeasurement(this.form.get('from').value, this.form.get('to').value, "glucose").subscribe (data => {
-      console.log(data);
-      this.averageGlucose = data.data;
+      if (data.code == 200){
+        this.averageGlucose = <number>data.data;
+        if (this.averageGlucose == 0) {
+          this.noData = true;
+        }
+      } else {
+        alert(data.description);
+      }
     });
   }
 
   getAverageCarbIntake() {
     this.averageGlucose = null;
     this.service.getAverageMeasurement(this.form.get('from').value, this.form.get('to').value, "carb").subscribe (data => {
-      console.log(data);
-      this.averageCarb = data.data;
+      if (data.code == 200){
+        this.averageCarb = <number>data.data;
+        if (this.averageCarb == 0) {
+          this.noData = true;
+        }
+      } else {
+        alert(data.description);
+      }
     });
   }
 

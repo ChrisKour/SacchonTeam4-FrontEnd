@@ -24,7 +24,6 @@ export class PatientPageComponent implements OnInit {
       this.router.navigate([sessionStorage.getItem("role")])
       return;
     }
-
     this.updatePatientLastLogin();
   }
 
@@ -33,7 +32,7 @@ export class PatientPageComponent implements OnInit {
       "date" : new Date().toLocaleDateString(),
       "time" : new Date().toLocaleTimeString()
     }
-    this.service.updatePatientLastLogin(date).subscribe();
+    this.service.updatePatientLastLogin(date, sessionStorage.getItem('id')).subscribe();
   }
 
   manageAccount() {

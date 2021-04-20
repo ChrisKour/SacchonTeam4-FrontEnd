@@ -31,11 +31,13 @@ export class PatientAccountComponent implements OnInit {
     patient.role = 'patient';
 
     this.service.editPatientAccount(this.editForm.value).subscribe(response => {
-      alert(response.description + " Please login again for the changes to take effect.");
       if (response.code == 200) {
+        alert(response.description + " Please login again for the changes to take effect.");
         sessionStorage.clear();
         this.loginService.responseOfAuth.next(false);
         this.router.navigate(['login']);
+      } else {
+        alert(response.description);
       }
     });
   }

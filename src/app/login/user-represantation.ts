@@ -1,7 +1,5 @@
-export interface Patient {
-
+export interface UserRepresantation {
     id: number;
-    name: string;
     username: string;
     password: string;
     role: string;

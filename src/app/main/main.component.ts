@@ -21,7 +21,7 @@ export class MainComponent implements OnInit, OnDestroy {
       this.router.navigate(['register']);
     } else {
       this.isLogged = true;
-      this.router.navigate(['patient']);
+      this.router.navigate([sessionStorage.getItem("role")]);
     }
     
     this.subscription = this.loginService.responseOfAuth.subscribe(data => this.isLogged = data);

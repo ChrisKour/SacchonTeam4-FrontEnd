@@ -15,11 +15,14 @@ export class EditPastMeasurementsComponent implements OnInit {
   measurements: Measurement[];
   isSortedClicked = false;
   editMeasurementForm: FormGroup;
+  isMeasurementNotNull = true;
+  idOfSelectedMeasurement = -1;
 
   constructor(private service: PatientService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.loadData();
+    this.isMeasurementNotNull = !(this.measurements == null);
     this.editMeasurementForm = this.fb.group({
       date: ['', [Validators.required, DateValidator.ptDate]],
       time: ['', [Validators.required, TimeValidator.ptTime]],
@@ -28,6 +31,7 @@ export class EditPastMeasurementsComponent implements OnInit {
     });
   }
 
+
   loadData() {
     this.service.getAllPastMeasurements().subscribe(data => {
       this.measurements = <Measurement[]>data.data;
@@ -35,26 +39,23 @@ export class EditPastMeasurementsComponent implements OnInit {
     );
   }
 
-  deleteMeasurement(uri: string) {
+  deleteMeasurement(id: number) {
     this.isSortedClicked = false;
-    let uriParts = uri.split('/');
-    console.log()
-    this.service.deleteMeasurement(uriParts[uriParts.length - 1]).subscribe(response => {
+    this.service.deleteMeasurement(id + '').subscribe(response => {
       alert(response.description);
       if (response.code == 200) {
         this.loadData();
       }
-
     });
   }
 
-  openEditForm() {
+  openEditForm(id: number) {
     this.isSortedClicked = !this.isSortedClicked;
+    this.idOfSelectedMeasurement = id;
   }
 
-  editMeasurement(uri: string) {
-    let uriParts = uri.split('/');
-    this.service.editPatientMeasurement(uriParts[uriParts.length - 1], this.editMeasurementForm.value).subscribe(data => {
+  editMeasurement(id: number) {
+    this.service.editPatientMeasurement(id + '', this.editMeasurementForm.value).subscribe(data => {
       alert(data.description);
       if (data.code == 200) {
         this.editMeasurementForm.reset();
