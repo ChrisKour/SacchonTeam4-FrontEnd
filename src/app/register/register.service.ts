@@ -16,21 +16,21 @@ export class RegisterService {
 
   registerPatient(patient: User): Observable<AppResponse> {
     return this.http.post<AppResponse>(
-      `${this.baseUrl}/registerpatient`,
+      `${this.baseUrl}/register_patient`,
       patient
       );
   }
 
   registerDoctor(doctor: User): Observable<AppResponse> {
     return this.http.post<AppResponse>(
-      `${this.baseUrl}/registerdoctor`,
+      `${this.baseUrl}/register_doctor`,
       doctor
       );
   }
 
   registerChief(chief: User): Observable<AppResponse> {
     return this.http.post<AppResponse>(
-      `${this.baseUrl}/registerchief`,
+      `${this.baseUrl}/register_chief`,
       chief
       );
   }

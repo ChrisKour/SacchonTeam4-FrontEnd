@@ -16,7 +16,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   authentication(loginInformation: LoginInformation): Observable<AppResponse> {
-    console.log(loginInformation);
     this.params.append('username', loginInformation.username);
     this.params.append('password', loginInformation.password);
 

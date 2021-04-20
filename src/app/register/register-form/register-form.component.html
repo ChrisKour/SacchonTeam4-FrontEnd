@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h3>Create an new account today!</h3>
+    <h3>Create a new account today!</h3>
     <form class="alert alert-secondary" [formGroup]="registerForm" (ngSubmit)="addUser()" novalidate>
         <div class="form-group">
             <label for="nameInput">Name</label>
@@ -24,6 +24,8 @@
         </div>
         <div *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched"
             class="text-danger">A password is required in order to register.</div>
+        <div *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched"
+            class="text-danger">The password must be at least 3 characters long.</div>
 
 
 

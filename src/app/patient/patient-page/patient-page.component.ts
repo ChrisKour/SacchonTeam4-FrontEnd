@@ -33,7 +33,6 @@ export class PatientPageComponent implements OnInit {
       "date" : new Date().toLocaleDateString(),
       "time" : new Date().toLocaleTimeString()
     }
-    console.log(date);
     this.service.updatePatientLastLogin(date).subscribe();
   }
 
