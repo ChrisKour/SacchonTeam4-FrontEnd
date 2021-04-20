@@ -30,6 +30,7 @@ export class LoginFormComponent implements OnInit {
     this.service.authentication(this.loginForm.value).subscribe(data => {
       if (data.code == 200) {
         this.service.responseOfAuth.next(true);
+        sessionStorage.setItem("role", data.description);
         // this.router.navigate([`${data.description}`]);
         this.router.navigate(['patient']);
       }

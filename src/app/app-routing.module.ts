@@ -14,10 +14,7 @@ const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
   {path: 'patient', component: PatientPageComponent},
   {path: 'register', component: RegisterFormComponent},
-  {path: 'patientaccount', component: PatientAccountComponent},
-  {path: 'patientpastmeasurements', component: PatientPastMeasurementsComponent},
-  {path: 'patientaddmeasurement', component: PatientAddMeasurementComponent},
-  {path: 'patient_edit_measurements', component: EditPastMeasurementsComponent}
+  {path: 'doctor', redirectTo: 'login', pathMatch: 'full'}
 ];
 
 @NgModule({

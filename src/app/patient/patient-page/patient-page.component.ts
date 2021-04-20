@@ -3,6 +3,7 @@ import { PatientService } from './../patient.service';
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../patient';
 
+
 @Component({
   selector: 'sacchon-patient-page',
   templateUrl: './patient-page.component.html',
@@ -16,9 +17,14 @@ export class PatientPageComponent implements OnInit {
   clickedNewMeasurement = false;
   clickedPastMeasurements = false;
 
-  constructor(private service: PatientService) { }
+  constructor(private service: PatientService, private router: Router) { }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem("role") != "patient"){
+      this.router.navigate([sessionStorage.getItem("role")])
+      return;
+    }
+
     this.updatePatientLastLogin();
   }
 
