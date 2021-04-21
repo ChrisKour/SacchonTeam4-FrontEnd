@@ -1,1 +1,39 @@
-<p>view-doctor-consultation works!</p>
+<div class="container-fluid">
+    <div class="list-group">
+        <div *ngFor="let doctor of doctors">
+            <button type="button" class="list-group-item list-group-item-action"
+                (click)="openDateForm(doctor.id)">Doctor: {{ doctor.name }}</button>
+            <div *ngIf="isDoctorClicked && doctor.id === idOfSelectedDoctor">
+                <form class="alert alert-secondary" [formGroup]="doctorForm" (ngSubmit)="getDoctorConsultations(doctor.id)" novalidate>
+                    <div class="form-group mr 2">
+                        <label for="fromDate">From Date:</label>
+                        <input class="form-control" type="text" id="fromDate" formControlName="fromDate">
+                    </div>
+                    <div *ngIf="doctorForm.get('fromDate').hasError('required') && doctorForm.get('fromDate').touched"
+                        class="text-danger">Enter a date to get the data.</div>
+                    <div class="form-group mr 2">
+                        <label for="toDate">To Date:</label>
+                        <input class="form-control" type="text" id="toDate" formControlName="toDate">
+                    </div>
+                    <div *ngIf="doctorForm.get('toDate').hasError('required') && doctorForm.get('toDate').touched"
+                        class="text-danger">Enter a date to get the data.</div>
+                    <button class="btn btn-primary" [disabled]='doctorForm.invalid'>Get patient data</button>
+                </form>
+            </div>
+
+            <div class="row" *ngIf="dataSent && doctor.id === isDoctorClicked">
+                <div *ngFor="let consultation of consultations">
+                    <div class="col-sm-4"></div>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Consulation Date: {{ consultation.date }} {{ consultation.time }}</h5>
+                            <p *ngIf="consultation.modifiedDate">Modification Date: {{ consultation.creationDate }} {{ consultation.creationTime }}</p>
+                            <p class="card-text">Perscription Name: {{ consultation.perscriptionName }}</p>
+                            <p class="card-text">Dosage: {{ consultation.dosage }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

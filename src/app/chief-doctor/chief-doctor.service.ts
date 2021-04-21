@@ -46,4 +46,22 @@ export class ChiefDoctorService {
       },
     );
   }
+
+  getAllDoctors() {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/doctor`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
+
+  getDoctorConsultations(id: string, fromDate: string, toDate: string) {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/doctor/${id}/measurement`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
 }
