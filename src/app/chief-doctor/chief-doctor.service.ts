@@ -64,4 +64,22 @@ export class ChiefDoctorService {
       },
     );
   }
+
+  getPatientsWaiting() {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/waiting_patients`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
+
+  getPatientLastConsultation(id: string) {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/patient/${id}/consultation`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
 }
