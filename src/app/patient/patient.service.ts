@@ -47,7 +47,7 @@ export class PatientService {
 
   getAverageMeasurement(fromDate: string, toDate: string, type: string) {
     return this.http.get<AppResponse>(
-      `${this.baseUrl}/patient/${sessionStorage.getItem("id")}/measurement`,
+      `${this.baseUrl}/patient/${sessionStorage.getItem("id")}/measurement_type`,
       {
         headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }),
         params: new HttpParams().set('fromDate', fromDate).set("toDate", toDate).set("type", type)

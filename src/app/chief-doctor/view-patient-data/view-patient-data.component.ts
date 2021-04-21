@@ -1,7 +1,9 @@
+import { Measurement } from './../../patient/measurement';
 import { Patient } from './../../patient/patient';
 import { ChiefDoctorService } from './../chief-doctor.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { DateValidator } from 'src/app/patient/date-validator';
 
 @Component({
   selector: 'sacchon-view-patient-data',
@@ -12,20 +14,40 @@ export class ViewPatientDataComponent implements OnInit {
 
   patientForm: FormGroup;
   patients: Patient[];
+  idOfSelectedPatient = -1;
+  isPatientClicked = false;
+  dataSent = false;
+  measurements: Measurement[];
 
   constructor(private fb: FormBuilder, private service: ChiefDoctorService) { }
 
   ngOnInit(): void {
     this.patientForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      fromDate: ['', [Validators.required, DateValidator.ptDate]],
+      toDate: ['', [Validators.required, DateValidator.ptDate]]
     });
-    this.getPatientData();
+    this.getPatients();
   }
 
-  getPatientData() {
+  getPatients() {
     this.service.getAllPatients().subscribe(data => {
+      console.log(data);
       this.patients = <Patient[]>data.data;
     });
+  }
+
+  getPatientData(id: number) {
+    this.dataSent = true;
+    this.service.getPatientPastData(id + '', this.patientForm.get('fromDate').value, this.patientForm.get('toDate').value).subscribe(data => {
+      this.measurements = <Measurement[]>data.data;
+      this.patientForm.reset();
+    });
+  }
+
+  openDateForm(id: number) {
+    this.isPatientClicked = !this.isPatientClicked;
+    this.dataSent = false;
+    this.idOfSelectedPatient = id;
+    this.measurements = null;
   }
 }

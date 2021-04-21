@@ -1,27 +1,38 @@
 <div class="container-fluid">
     <div class="list-group">
         <div *ngFor="let patient of patients">
-            <button type="button" class="list-group-item list-group-item-action">{{ patient.name }}</button>
-            <div>
-                <form class="alert alert-secondary" [formGroup]="patientForm" (ngSubmit)="getPatientData()" novalidate>
+            <button type="button" class="list-group-item list-group-item-action"
+                (click)="openDateForm(patient.id)">Patient: {{ patient.name }}</button>
+            <div *ngIf="isPatientClicked && patient.id === idOfSelectedPatient">
+                <form class="alert alert-secondary" [formGroup]="patientForm" (ngSubmit)="getPatientData(patient.id)" novalidate>
                     <div class="form-group mr 2">
-                        <label for="username">From Date:</label>
-                        <input class="form-control" type="text" id="username" formControlName="username"
-                            placeholder="Enter your username">
+                        <label for="fromDate">From Date:</label>
+                        <input class="form-control" type="text" id="fromDate" formControlName="fromDate">
                     </div>
-                    <div *ngIf="patientForm.get('username').hasError('required') && patientForm.get('username').touched"
-                        class="text-danger">Enter your username to login.</div>
+                    <div *ngIf="patientForm.get('fromDate').hasError('required') && patientForm.get('fromDate').touched"
+                        class="text-danger">Enter a date to get the data.</div>
                     <div class="form-group mr 2">
-                        <label for="password">To Date:</label>
-                        <input class="form-control" type="password" id="password" formControlName="password"
-                            placeholder="Enter your password">
+                        <label for="toDate">To Date:</label>
+                        <input class="form-control" type="text" id="toDate" formControlName="toDate">
                     </div>
-                    <div *ngIf="patientForm.get('password').hasError('required') && patientForm.get('password').touched"
-                        class="text-danger">Enter your password to login.</div>
+                    <div *ngIf="patientForm.get('toDate').hasError('required') && patientForm.get('toDate').touched"
+                        class="text-danger">Enter a date to get the data.</div>
                     <button class="btn btn-primary" [disabled]='patientForm.invalid'>Get patient data</button>
                 </form>
             </div>
+
+            <div class="row" *ngIf="dataSent && patient.id === idOfSelectedPatient">
+                <div *ngFor="let measurement of measurements">
+                    <div class="col-sm-4"></div>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Measurement Date: {{ measurement.date }} {{ measurement.time }}</h5>
+                            <p class="card-text">Glucose Level: {{ measurement.glucoseLevel }}</p>
+                            <p class="card-text">Carb Intake: {{ measurement.carbIntake }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 </div>

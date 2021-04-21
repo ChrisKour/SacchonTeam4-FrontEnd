@@ -15,14 +15,12 @@ export class EditPastMeasurementsComponent implements OnInit {
   measurements: Measurement[];
   isSortedClicked = false;
   editMeasurementForm: FormGroup;
-  isMeasurementNotNull = true;
   idOfSelectedMeasurement = -1;
 
   constructor(private service: PatientService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.loadData();
-    this.isMeasurementNotNull = !(this.measurements == null);
     this.editMeasurementForm = this.fb.group({
       date: ['', [Validators.required, DateValidator.ptDate]],
       time: ['', [Validators.required, TimeValidator.ptTime]],

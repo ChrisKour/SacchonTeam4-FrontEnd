@@ -19,4 +19,31 @@ export class ChiefDoctorService {
       },
     );
   }
+
+  getPatientPastData(id: string, fromDate: string, toDate: string) {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/patient/${id}/measurement`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
+
+  getInactivePatients(fromDate: string, toDate: string) {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/patient`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
+
+  getInactiveDoctors(fromDate: string, toDate: string) {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/doctor`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
 }
