@@ -40,8 +40,14 @@ export class ViewDoctorConsultationComponent implements OnInit {
   getDoctorConsultations(id: number) {
     this.dataSent = true;
     this.service.getDoctorConsultations(id + '', this.doctorForm.get('fromDate').value, this.doctorForm.get('toDate').value).subscribe(data => {
-      this.consultations = <Consultation[]>data.data;
-      this.doctorForm.reset();
+      if (data.code == 400) {
+        alert(data.description)
+      } else {
+        console.log(data)
+        this.consultations = <Consultation[]>data.data;
+        
+        this.doctorForm.reset();
+      }
     });
   }
 

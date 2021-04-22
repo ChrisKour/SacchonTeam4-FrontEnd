@@ -39,8 +39,12 @@ export class ViewPatientDataComponent implements OnInit {
   getPatientData(id: number) {
     this.dataSent = true;
     this.service.getPatientPastData(id + '', this.patientForm.get('fromDate').value, this.patientForm.get('toDate').value).subscribe(data => {
-      this.measurements = <Measurement[]>data.data;
-      this.patientForm.reset();
+      if (data.code == 400) {
+        alert(data.description)
+      } else {
+        this.measurements = <Measurement[]>data.data;
+        this.patientForm.reset();
+      }
     });
   }
 

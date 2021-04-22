@@ -17,19 +17,19 @@
                     </div>
                     <div *ngIf="doctorForm.get('toDate').hasError('required') && doctorForm.get('toDate').touched"
                         class="text-danger">Enter a date to get the data.</div>
-                    <button class="btn btn-primary" [disabled]='doctorForm.invalid'>Get patient data</button>
+                    <button class="btn btn-primary" [disabled]='doctorForm.invalid'>Get doctor's consultations</button>
                 </form>
             </div>
 
-            <div class="row" *ngIf="dataSent && doctor.id === isDoctorClicked">
+            <div class="row" *ngIf="dataSent && doctor.id == idOfSelectedDoctor">
                 <div *ngFor="let consultation of consultations">
                     <div class="col-sm-4"></div>
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Consulation Date: {{ consultation.date }} {{ consultation.time }}</h5>
-                            <p *ngIf="consultation.modifiedDate">Modification Date: {{ consultation.creationDate }} {{ consultation.creationTime }}</p>
-                            <p class="card-text">Perscription Name: {{ consultation.perscriptionName }}</p>
-                            <p class="card-text">Dosage: {{ consultation.dosage }}</p>
+                            <h5 class="card-title">Consulation Date: {{ consultation.creationDate }} {{ consultation.creationTime }}</h5>
+                            <p *ngIf="consultation.modifiedDate">Modification Date: {{ consultation.modifiedDate }} {{ consultation.modifiedTime }}</p>
+                            <p class="card-text">Perscription Name: {{ consultation.prescriptionName }}</p>
+                            <p class="card-text">Dosage: {{ consultation.dosage }} pills per day</p>
                         </div>
                     </div>
                 </div>

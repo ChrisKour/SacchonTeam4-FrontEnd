@@ -27,6 +27,7 @@ export class InactivePatientsComponent implements OnInit {
     this.service.getInactivePatients(this.dateForm.get('fromDate').value, this.dateForm.get('toDate').value).subscribe(data =>
     {
       this.patients = <Patient[]>data.data;
+      console.log(this.patients)
       this.dateForm.reset();
     });
   }

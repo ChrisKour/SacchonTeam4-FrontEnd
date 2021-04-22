@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppResponse } from '../main/appResponse';
 
@@ -24,7 +24,8 @@ export class ChiefDoctorService {
     return this.http.get<AppResponse>(
       `${this.baseUrl}/patient/${id}/measurement`,
       {
-        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }),
+        params: new HttpParams().set('fromDate', fromDate).set("toDate", toDate)
       },
     );
   }
@@ -33,7 +34,8 @@ export class ChiefDoctorService {
     return this.http.get<AppResponse>(
       `${this.baseUrl}/patient`,
       {
-        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }),
+        params: new HttpParams().set('fromDate', fromDate).set("toDate", toDate)
       },
     );
   }
@@ -58,9 +60,10 @@ export class ChiefDoctorService {
 
   getDoctorConsultations(id: string, fromDate: string, toDate: string) {
     return this.http.get<AppResponse>(
-      `${this.baseUrl}/doctor/${id}/measurement`,
+      `${this.baseUrl}/doctor/${id}/consultation`,
       {
-        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }),
+        params: new HttpParams().set('fromDate', fromDate).set("toDate", toDate)
       },
     );
   }
