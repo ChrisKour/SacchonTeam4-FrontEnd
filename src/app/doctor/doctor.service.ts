@@ -36,5 +36,32 @@ export class DoctorService {
       },
     );
   }
+
+  getAssignedAndUnassignedPatients() {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/doctor/${sessionStorage.getItem("id")}/patient`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
  
+  getPatientMeasurements(id: string) {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/patient/${id}/measurement`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
+
+  getPatientConsultations(id: string) {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/patient/${id}/consultation`,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+      },
+    );
+  }
+
 }

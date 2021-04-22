@@ -27,8 +27,9 @@ export class ViewPatientsWithoutConsulComponent implements OnInit {
     this.service.getPatientsWithNoConsul().subscribe(data => {
       if (data.code == 400) {
         alert(data.description);
+      } else{
+        this.patients = <Patient[]>data.data;
       }
-      this.patients = <Patient[]>data.data;
     });
   }
 
