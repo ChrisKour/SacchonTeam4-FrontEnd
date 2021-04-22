@@ -25,6 +25,7 @@ export class ViewPatientsWaitingComponent implements OnInit {
 
   getPatients() {
     this.service.getPatientsWaiting().subscribe(data => {
+      console.log(data)
       this.patients = <Patient[]>data.data;
     });
   }

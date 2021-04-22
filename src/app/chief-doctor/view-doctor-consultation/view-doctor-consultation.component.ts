@@ -32,7 +32,6 @@ export class ViewDoctorConsultationComponent implements OnInit {
 
   getDoctors() {
     this.service.getAllDoctors().subscribe(data => {
-      console.log(data);
       this.doctors = <Doctor[]>data.data;
     });
   }
@@ -43,7 +42,6 @@ export class ViewDoctorConsultationComponent implements OnInit {
       if (data.code == 400) {
         alert(data.description)
       } else {
-        console.log(data)
         this.consultations = <Consultation[]>data.data;
         
         this.doctorForm.reset();

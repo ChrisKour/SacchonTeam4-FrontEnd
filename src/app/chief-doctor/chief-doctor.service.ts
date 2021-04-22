@@ -44,7 +44,8 @@ export class ChiefDoctorService {
     return this.http.get<AppResponse>(
       `${this.baseUrl}/doctor`,
       {
-        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
+        headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }),
+        params: new HttpParams().set('fromDate', fromDate).set("toDate", toDate)
       },
     );
   }

@@ -24,10 +24,16 @@ export class InactiveDoctorsComponent implements OnInit {
   }
 
   getInactiveDoctors() {
+    this.doctors = null;
     this.service.getInactiveDoctors(this.dateForm.get('fromDate').value, this.dateForm.get('toDate').value).subscribe(data =>
     {
-      this.doctors = <Doctor[]>data.data;
-      this.dateForm.reset();
+      console.log(data)
+      if(data.code == 400) {
+        alert(data.description)
+      } else{
+        this.doctors = <Doctor[]>data.data;
+        this.dateForm.reset();
+      }
     });
   }
 }
