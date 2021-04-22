@@ -25,8 +25,11 @@ export class ViewPatientsWaitingComponent implements OnInit {
 
   getPatients() {
     this.service.getPatientsWaiting().subscribe(data => {
-      console.log(data)
-      this.patients = <Patient[]>data.data;
+      if (data.code == 400) {
+        alert(data.description)
+      }else {
+        this.patients = <Patient[]>data.data;
+      }
     });
   }
 

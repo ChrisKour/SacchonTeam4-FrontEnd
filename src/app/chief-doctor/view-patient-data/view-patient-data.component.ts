@@ -31,7 +31,6 @@ export class ViewPatientDataComponent implements OnInit {
 
   getPatients() {
     this.service.getAllPatients().subscribe(data => {
-      console.log(data);
       this.patients = <Patient[]>data.data;
     });
   }
