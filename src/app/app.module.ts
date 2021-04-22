@@ -10,11 +10,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PatientModule } from './patient/patient.module';
 import { MainComponent } from './main/main.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { DoctorAccountComponent } from './doctor/doctor-account/doctor-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    DoctorComponent,
+    DoctorAccountComponent
   ],
   imports: [
     BrowserModule,

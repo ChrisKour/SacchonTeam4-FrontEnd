@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <div class="list-group">
+        <div *ngFor="let patient of patients">
+            <button type="button" class="list-group-item list-group-item-action" (click)="getPatientsWithNoConsul()">Patient: {{ patient.name }}</button>
+            <div *ngIf="isPatientClicked && patient.id == idOfSelectedPatient">
+                
+            </div>
+        </div>
+    </div>
+</div>
