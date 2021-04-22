@@ -13,16 +13,6 @@ export class DoctorService {
 
   constructor(private http: HttpClient) { }
 
-
-
-  updateDoctorLastLogin(date: Object, id: string) {
-    return this.http.patch<AppResponse>(
-      `${this.baseUrl}/doctor/${id}`,
-      date,
-      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) },
-    );
-  }
-
   editDoctorAccount(doctor: Doctor) {
     return this.http.put<DoctorResponse>(
       `${this.baseUrl}/doctor/${sessionStorage.getItem("id")}`,
@@ -37,9 +27,10 @@ export class DoctorService {
       { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) }
     );
   }
+  
   getPatientsWithNoConsul() {
     return this.http.get<AppResponse>(
-      `${this.baseUrl}/patients_with_no_consultation`,
+      `${this.baseUrl}/patients_with_no_consultation/${sessionStorage.getItem("id")}`,
       {
         headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
       },
