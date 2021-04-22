@@ -1,5 +1,4 @@
-import { Consultation } from './../consultation';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Patient } from 'src/app/patient/patient';
 import { DoctorService } from '../doctor.service';
 
@@ -26,6 +25,9 @@ export class ViewPatientsWithoutConsulComponent implements OnInit {
 
   getPatients() {
     this.service.getPatientsWithNoConsul().subscribe(data => {
+      if (data.code == 400) {
+        alert(data.description);
+      }
       this.patients = <Patient[]>data.data;
     });
   }
