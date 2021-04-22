@@ -2,7 +2,7 @@ export interface Consultation {
 
     id: number;
     dosage: number;
-    perscriptionName: string;
+    prescriptionName: string;
     creationDate: string;
     creationTime: string;
     modifiedDate: string;

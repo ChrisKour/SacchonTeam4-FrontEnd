@@ -76,7 +76,7 @@ export class ChiefDoctorService {
 
   getPatientLastConsultation(id: string) {
     return this.http.get<AppResponse>(
-      `${this.baseUrl}/patient/${id}/consultation`,
+      `${this.baseUrl}/patient/${id}/consultation_last`,
       {
         headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
       },

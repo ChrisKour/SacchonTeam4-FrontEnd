@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { PatientService } from './../patient.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,6 +17,7 @@ export class PatientPageComponent implements OnInit {
   clickedAverages = false;
   clickedNewMeasurement = false;
   clickedPastMeasurements = false;
+  clickedConsultations = false;
 
   constructor(private service: PatientService, private router: Router) { }
 
@@ -24,7 +26,16 @@ export class PatientPageComponent implements OnInit {
       this.router.navigate([sessionStorage.getItem("role")])
       return;
     }
+    this.checkForUpdatedConsultations();
     this.updatePatientLastLogin();
+  }
+
+  checkForUpdatedConsultations(): void{
+    this.service.checkForUpdatedConsultations().subscribe(data => {
+      if (data.code == 200) {
+        alert(data.description);
+      }
+    });
   }
 
   updatePatientLastLogin() {
@@ -35,31 +46,43 @@ export class PatientPageComponent implements OnInit {
     this.service.updatePatientLastLogin(date, sessionStorage.getItem('id')).subscribe();
   }
 
-  manageAccount() {
+  manageAccount(): void {
     this.clickedAverages = false;
     this.clickedNewMeasurement = false;
     this.clickedPastMeasurements = false;
+    this.clickedConsultations = false;
     this.clickedManage = true;
   }
 
-  storeNewMeasurement() {
+  storeNewMeasurement(): void {
     this.clickedAverages = false;
     this.clickedManage = false;
     this.clickedPastMeasurements = false;
+    this.clickedConsultations = false;
     this.clickedNewMeasurement = true;
   }
 
-  viewPastAverages() {
+  viewPastAverages(): void {
     this.clickedManage = false;
     this.clickedPastMeasurements = false;
     this.clickedNewMeasurement = false;
+    this.clickedConsultations = false;
     this.clickedAverages = true;
   }
 
-  editPastMeasurements() {
+  editPastMeasurements(): void {
     this.clickedManage = false;
     this.clickedNewMeasurement = false;
     this.clickedAverages = false;
+    this.clickedConsultations = false;
     this.clickedPastMeasurements = true;
+  }
+
+  viewConsultations(): void {
+    this.clickedManage = false;
+    this.clickedNewMeasurement = false;
+    this.clickedPastMeasurements = false;
+    this.clickedAverages = false;
+    this.clickedConsultations = true;
   }
 }

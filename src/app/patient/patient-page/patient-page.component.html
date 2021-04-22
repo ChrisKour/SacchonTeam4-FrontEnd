@@ -4,6 +4,7 @@
     <button class="btn btn-primary ml-3" (click)="viewPastAverages()">View past measurement averages</button>
     <button class="btn btn-primary ml-3" (click)="storeNewMeasurement()">Add new measurement</button>
     <button class="btn btn-primary ml-3" (click)="editPastMeasurements()">View and edit past measurements</button>
+    <button class="btn btn-primary ml-3" (click)="viewConsultations()">View consultations</button>
 </div>
 
 <div *ngIf="clickedManage">
@@ -20,4 +21,8 @@
 
 <div *ngIf="clickedPastMeasurements">
     <sacchon-edit-past-measurements></sacchon-edit-past-measurements>
+</div>
+
+<div *ngIf="clickedConsultations">
+    <sacchon-patient-view-consultations></sacchon-patient-view-consultations>
 </div>

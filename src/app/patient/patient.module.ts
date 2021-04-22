@@ -6,6 +6,7 @@ import { PatientAccountComponent } from './patient-account/patient-account.compo
 import { PatientPastMeasurementsComponent } from './patient-past-measurements/patient-past-measurements.component';
 import { PatientAddMeasurementComponent } from './patient-add-measurement/patient-add-measurement.component';
 import { EditPastMeasurementsComponent } from './edit-past-measurements/edit-past-measurements.component';
+import { PatientViewConsultationsComponent } from './patient-view-consultations/patient-view-consultations.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { EditPastMeasurementsComponent } from './edit-past-measurements/edit-pas
     PatientAccountComponent,
     PatientPastMeasurementsComponent,
     PatientAddMeasurementComponent,
-    EditPastMeasurementsComponent
+    EditPastMeasurementsComponent,
+    PatientViewConsultationsComponent
   ],
   imports: [
     CommonModule,

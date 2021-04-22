@@ -80,4 +80,18 @@ export class PatientService {
       { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) },
     );
   }
+
+  getAllPatientConsultations() {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("id")}/consultation`,
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) },
+    );
+  }
+
+  checkForUpdatedConsultations() {
+    return this.http.get<AppResponse>(
+      `${this.baseUrl}/patient/${sessionStorage.getItem("id")}/consultation_updates`,
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })},
+    );
+  }
 }

@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <div class="row" *ngIf="consultations"></div>
+    <div *ngFor="let consultation of consultations">
+        <div class="col-sm-4"></div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Consultation Date: {{ consultation.creationDate }} {{ consultation.creationTime }}</h5>
+                <p *ngIf="consultation.modifiedDate">Modification Date: {{ consultation.modifiedDate }} {{ consultation.modifiedTime }}</p>
+                <p class="card-text">Perscription Name: {{ consultation.prescriptionName }}</p>
+                <p class="card-text">Dosage: {{ consultation.dosage }}</p>
+            </div>
+        </div>
+    </div>
+</div>
