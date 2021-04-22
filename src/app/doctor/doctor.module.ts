@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DoctorAccountComponent } from './doctor-account/doctor-account.component';
 //import { DoctorPageComponent } from './doctor-page/doctor-page.component';
 import { ViewPatientsWithoutConsulComponent } from './view-patients-without-consul/view-patients-without-consul.component';
+import { DoctorAddConsultationComponent } from './doctor-add-consultation/doctor-add-consultation.component';
 
 
 
@@ -13,7 +14,8 @@ import { ViewPatientsWithoutConsulComponent } from './view-patients-without-cons
   
     DoctorAccountComponent,
     //DoctorPageComponent,
-    ViewPatientsWithoutConsulComponent
+    ViewPatientsWithoutConsulComponent,
+    DoctorAddConsultationComponent
   ],
   imports: [
     CommonModule,
