@@ -1,8 +1,10 @@
+
 import { DoctorResponse } from './doctor-response';
 import { AppResponse } from './../main/appResponse';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Doctor } from './doctor';
+import { Consultation } from './consultation';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +63,14 @@ export class DoctorService {
       {
         headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) })
       },
+    );
+  }
+  
+  addConsultation(consultation: Consultation) {
+    return this.http.post<AppResponse>(
+      `${this.baseUrl}/doctor/${sessionStorage.getItem("id")}/consultation`,
+      consultation,
+      { headers: new HttpHeaders({ 'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials")) }) },
     );
   }
 
