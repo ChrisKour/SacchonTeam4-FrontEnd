@@ -7,4 +7,5 @@ export interface Consultation {
     creationTime: string;
     modifiedDate: string;
     modifiedTime: string;
+    patientId: number;
 }

@@ -40,7 +40,6 @@ export class ViewPatientRecordsComponent implements OnInit {
     this.consultations = null;
     this.measurements = null;
     this.idOfSelectedPatient = id;
-    console.log(this.idOfSelectedPatient)
   }
 
   getPatientMeasurements(id: number) {
@@ -62,7 +61,6 @@ export class ViewPatientRecordsComponent implements OnInit {
       if (data.code == 400) {
         alert(data.description);
       } else {
-        console.log(data.data)
         this.consultations = <Consultation[]>data.data;
       }
     });

@@ -3,8 +3,7 @@
     <button class="btn btn-primary" (click)="manageAccount()">Manage my account</button>
     <button class="btn btn-primary ml-3" (click)="viewPatientRecords()">View patient records</button>
     <button class="btn btn-primary ml-3" (click)="viewWaitingPatients()">Patients awaiting consultations</button>
-    <button class="btn btn-primary ml-3" (click)="consultPatient()">Consult patient</button>
-    <button class="btn btn-primary ml-3" (click)="modifyConsultation()">Doctors with no activity over time</button>
+    <button class="btn btn-primary ml-3" (click)="modifyConsultation()">Update a patient's consultation</button>
 </div>
 
 <div *ngIf="clickedManageAccount">
@@ -17,10 +16,6 @@
 
 <div *ngIf="clickedPatientsWaiting">
     <sacchon-view-patients-without-consul></sacchon-view-patients-without-consul>
-</div>
-
-<div *ngIf="clickedProvideConsultation">
-    <!-- <sacchon-inactive-patients></sacchon-inactive-patients> -->
 </div>
 
 <div *ngIf="clickedUpdateConsultation">
