@@ -53,6 +53,7 @@ export class EditPastMeasurementsComponent implements OnInit {
   }
 
   editMeasurement(id: number) {
+    console.log(this.editMeasurementForm.value)
     this.service.editPatientMeasurement(id + '', this.editMeasurementForm.value).subscribe(data => {
       alert(data.description);
       if (data.code == 200) {

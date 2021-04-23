@@ -12,7 +12,7 @@ export class DoctorLandingPageComponent implements OnInit {
 
   doctor: Doctor;
   clickedManageAccount = false;
-  clickedPatientRecords = false;
+  clickedPatientRecords = true;
   clickedPatientsWaiting = false;
   clickedProvideConsultation = false;
   clickedUpdateConsultation = false;

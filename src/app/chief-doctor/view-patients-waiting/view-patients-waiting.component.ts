@@ -52,7 +52,8 @@ export class ViewPatientsWaitingComponent implements OnInit {
         let measurementDate = new Date(dateArray[1]+'/'+dateArray[0]+'/'+dateArray[2]);
         let difference_In_Time = new Date().getTime() - measurementDate.getTime();
         let difference_In_Days = difference_In_Time / (1000 * 3600 * 24);
-        this.consultationDays = "This patient has never had a consultation and his first measurement was " + Math.round(difference_In_Days) + " days ago";
+        let diff = Math.round(difference_In_Days) - 3 
+        this.consultationDays = "This patient has never had a consultation and needs one for  " + diff + " days";
       } else if (data.code == 400) {
         this.consultationDays = "This patient has never had a consultation or uploaded a measurement."
       }

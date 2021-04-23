@@ -74,6 +74,7 @@ export class PatientService {
   }
 
   editPatientMeasurement(id: string, measurement: Measurement) {
+    console.log(id)
     return this.http.put<AppResponse>(
       `${this.baseUrl}/patient/${sessionStorage.getItem("id")}/measurement/${id}`,
       measurement,

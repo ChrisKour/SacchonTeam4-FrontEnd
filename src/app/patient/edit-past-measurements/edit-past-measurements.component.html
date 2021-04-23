@@ -1,9 +1,10 @@
 <div class="container-fluid">
+    <hr>
+    <div class="container-fluid">
     <div class="row" *ngIf="measurements">
         <!-- <div class="container-fluid" *ngIf="isMeasurementEmpty">
             <h3>No measurements have been added yet.</h3>
         </div> -->
-
         <div *ngFor="let measurement of measurements">
             <div class="col-sm-4"></div>
             <div class="card" style="width: 18rem;">
@@ -17,7 +18,7 @@
 
                 <div *ngIf="isSortedClicked && measurement.id === idOfSelectedMeasurement">
                     <form class="alert alert-secondary" [formGroup]="editMeasurementForm"
-                        (ngSubmit)="editMeasurement(measurement.uri)" novalidate>
+                        (ngSubmit)="editMeasurement(measurement.id)" novalidate>
                         <div class="form-group mr 2">
                             <label for="date">Date:</label>
                             <input class="form-control" type="text" id="date" formControlName="date"
@@ -39,7 +40,7 @@
                             The time must be filled as HH:mm
                         </div>
                         <div class="form-group mr 2">
-                            <label for="glucoseLevel">Glucose level:</label>
+                            <label for="glucoseLevel">Glucose level: (mg/dL)</label>
                             <input class="form-control" type="text" id="glucoseLevel" formControlName="glucoseLevel"
                                 placeholder="Enter your glucose level">
                         </div>
@@ -49,7 +50,7 @@
                             class="text-danger">Only integers are allowed</div>
 
                         <div class="form-group mr 2">
-                            <label for="carbIntake">Carb intake:</label>
+                            <label for="carbIntake">Carb intake: (grams)</label>
                             <input class="form-control" type="text" id="carbIntake" formControlName="carbIntake"
                                 placeholder="Enter your carb intake">
                         </div>
@@ -64,4 +65,5 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
