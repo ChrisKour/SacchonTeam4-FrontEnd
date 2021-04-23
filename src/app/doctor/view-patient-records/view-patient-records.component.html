@@ -4,7 +4,9 @@
         <div *ngFor="let patient of patients">
             <button type="button" class="list-group-item list-group-item-action"
                 (click)="selectPatient(patient.id)">Patient: {{ patient.name }}</button>
-            <div *ngIf="isPatientClicked && patient.id == idOfSelectedPatient">
+                <hr>
+            
+                <div *ngIf="isPatientClicked && patient.id == idOfSelectedPatient">
                 <div class="container-fluid">
                     <div *ngIf="isPatientClicked && patient.id == idOfSelectedPatient">
                         <button class="btn btn-primary" (click)="getPatientMeasurements(patient.id)">Get patient
@@ -14,29 +16,34 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div *ngFor="let measurement of measurements">
-                        <div class="col-sm-4"></div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Measurement Date: {{ measurement.date }} {{ measurement.time }}
-                                </h5>
-                                <p class="card-text">Glucose Level: {{ measurement.glucoseLevel }}</p>
-                                <p class="card-text">Carb Intake: {{ measurement.carbIntake }}</p>
+                <hr>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div *ngFor="let measurement of measurements">
+                            <div class="col-sm-4"></div>
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Measurement Date: {{ measurement.date }} {{ measurement.time }}
+                                    </h5>
+                                    <p class="card-text">Glucose Level: {{ measurement.glucoseLevel }}</p>
+                                    <p class="card-text">Carb Intake: {{ measurement.carbIntake }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div *ngFor="let consultation of consultations">
-                        <div class="col-sm-4"></div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Consulation Date: {{ consultation.date }} {{ consultation.time }}</h5>
-                                <p *ngIf="consultation.modifiedDate">Modification Date: {{ consultation.creationDate }} {{ consultation.creationTime }}</p>
-                                <p class="card-text">Perscription Name: {{ consultation.prescriptionName }}</p>
-                                <p class="card-text">Dosage: {{ consultation.dosage }}</p>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div *ngFor="let consultation of consultations">
+                            <div class="col-sm-4"></div>
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Consulation Date: {{ consultation.date }} {{ consultation.time }}</h5>
+                                    <p *ngIf="consultation.modifiedDate">Modification Date: {{ consultation.creationDate }} {{ consultation.creationTime }}</p>
+                                    <p class="card-text">Perscription Name: {{ consultation.prescriptionName }}</p>
+                                    <p class="card-text">Dosage: {{ consultation.dosage }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

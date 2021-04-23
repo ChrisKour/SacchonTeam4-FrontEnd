@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChiefDoctorLandingPageComponent implements OnInit {
 
-  clickedPatientData = false;
+  clickedPatientData = true;
   clickedDoctorsConsulations = false;
   clickedWaitingPatients = false;
   clickedInactivePatients = false;

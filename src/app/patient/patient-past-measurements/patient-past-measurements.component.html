@@ -2,7 +2,7 @@
     <form class="alert alert-secondary" [formGroup]="form" novalidate>
         <div class="form-group mr 2">
             <label for="from">Date from:</label>
-            <input class="form-control" type="text" id="from" formControlName="from">
+            <input class="form-control" type="text" id="from" formControlName="from" placeholder="Enter date">
         </div>
         <div *ngIf="form.get('from').hasError('required') && form.get('from').touched" class="text-danger">All
             the fields must be set</div>
@@ -12,7 +12,7 @@
 
         <div class="form-group mr 2">
             <label for="to">Date to:</label>
-            <input class="form-control" type="text" id="to" formControlName="to">
+            <input class="form-control" type="text" id="to" formControlName="to" placeholder="Enter date">
         </div>
         <div *ngIf="form.get('to').hasError('required') && form.get('to').touched" class="text-danger">All
             the fields must be set</div>

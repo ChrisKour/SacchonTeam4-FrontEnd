@@ -15,7 +15,7 @@ export class PatientPageComponent implements OnInit {
   patient: Patient;
   clickedManage = false;
   clickedAverages = false;
-  clickedNewMeasurement = false;
+  clickedNewMeasurement = true;
   clickedPastMeasurements = false;
   clickedConsultations = false;
 
