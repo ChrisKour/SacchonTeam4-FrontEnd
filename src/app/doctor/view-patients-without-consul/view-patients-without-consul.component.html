@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="list-group">
         <div *ngFor="let patient of patients">
-            <button type="button" class="list-group-item list-group-item-action" (click)="provideConsultations()">Patient: {{ patient.name }}
+            <button type="button" class="list-group-item list-group-item-action" (click)="provideConsultations(patient.id)">Patient: {{ patient.name }}
             </button>
-            <div *ngIf="clickedProvideConsultation">
+            <div *ngIf="clickedProvideConsultation && patient.id == idOfSelectedPatient">
                 <div class="container-fluid">
                     <form class="alert alert-secondary" [formGroup]="consultationForm" (ngSubmit)="submitConsultation(patient.id)" novalidate>
                         <div class="form-group mr 2">

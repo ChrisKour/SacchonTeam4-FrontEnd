@@ -40,8 +40,9 @@ export class ViewPatientsWithoutConsulComponent implements OnInit {
     });
   }
 
-  provideConsultations() {
+  provideConsultations(id: number) {
     this.clickedProvideConsultation = true;
+    this.idOfSelectedPatient = id;
   }
 
   submitConsultation(id: number) {
